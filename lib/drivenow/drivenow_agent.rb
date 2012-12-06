@@ -13,14 +13,14 @@ module Drivenow
 		#--
 		# TODO: Option for the Xpath for cars-array inside the JSON
 		def initialize(options = {})
-			options = { :uri => 'https://www.drive-now.com/php/metropolis/json.vehicle_filter' }.merge(options)
 			cities = Agent.cities
+			unless options[:city].nil?
+				url_params = "cit=#{cities[options[:city]]}"
+			end
+			options = { :uri => "https://www.drive-now.com/php/metropolis/json.vehicle_filter?#{url_params}" }.merge(options)
 			
 			page = open(options[:uri]).read
 			cars = JSON(page)["rec"]["vehicles"]["vehicles"]
-			unless options[:city].nil?
-				cars = cars.select { |item| item["cit"] == cities[options[:city]] }
-			end
 			cities = cities.invert
 			cars.each { |item| item["cit"] = cities[item["cit"]] }
 			cars.map! { |item| Car.new(item) }
