@@ -35,6 +35,7 @@ module Drivenow
 		#  * Berlin
 		#  * Düsseldorf
 		#  * München
+		#  * Köln
 		#  * Unterhaching (part of M�nchen)
 		# Can easily be overridden if there are more cities available in the future
 		#--
@@ -44,6 +45,7 @@ module Drivenow
 				:duesseldorf => "1293",
 				:berlin => "6099", 
 				:muenchen => "4604",
+				:koeln => "1774",
 				#:unterhaching => "7590",
 				#:oberding => "7591",
 				#:korschenbroich => "1294"
