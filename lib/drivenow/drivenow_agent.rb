@@ -17,8 +17,8 @@ module Drivenow
 			unless options[:city].nil?
 				url_params = "cit=#{cities[options[:city]]}"
 			end
-			options = { :uri => "https://www.drive-now.com/php/metropolis/json.vehicle_filter?#{url_params}" }.merge(options)
-			
+			options = { :uri => "https://m.drive-now.com/php/metropolis/json.vehicle_filter?#{url_params}" }.merge(options)
+
 			page = open(options[:uri]).read
 			cars = JSON(page)["rec"]["vehicles"]["vehicles"]
 			cities = cities.invert
